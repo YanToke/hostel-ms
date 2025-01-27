@@ -1,15 +1,11 @@
+import Header from '@/components/building_page/Header'
 import Link from 'next/link'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      <div className="my-[40px] flex justify-between items-center">
-        <h1 className="font-bold text-[24px] ">Create Building</h1>
-        <Link href={'/buildings'} className="font-bold">
-          Back
-        </Link>
-      </div>
+      <Header title={'Create Building'} />
       <form>
         <p className="font-bold text-[#4F378B] mb-[16px]">Building Image</p>
         <label htmlFor="img">

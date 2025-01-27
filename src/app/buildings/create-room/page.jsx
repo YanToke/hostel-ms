@@ -5,9 +5,9 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-      <Header title={'Create Floor'} />
+      <Header title={'Create Room'} />
       <form>
-        <p className="font-bold text-[#4F378B] mb-[16px]">Floor Image</p>
+        <p className="font-bold text-[#4F378B] mb-[16px]">Room Image</p>
         <label htmlFor="img">
           <img
             src="/building.jpg"
@@ -18,7 +18,7 @@ const page = () => {
         </label>
         <input id="img" type="file" hidden />
 
-        <p className="font-bold text-[#4F378B] mb-[16px]">Floor Name</p>
+        <p className="font-bold text-[#4F378B] mb-[16px]">Room Name</p>
         <input
           type="text"
           className="border-[2px] border-black w-[344px] h-[40px] rounded-[8px] pl-[24px] mb-[40px]"
