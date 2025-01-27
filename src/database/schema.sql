@@ -13,6 +13,7 @@ CREATE TABLE buildings(
 INSERT INTO buildings (name) VALUES ("boys rooms"),("girls rooms");
 
 CREATE TABLE floors(
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     img VARCHAR(255) DEFAULT "/floor.jpg"
 );
