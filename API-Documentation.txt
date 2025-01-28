@@ -1,0 +1,51 @@
+--------------------------------------------------API Document-----------------------------------------------
+
+purpose = to get a list of buildings
+url = /api/buildings
+method = Get
+response = [
+    {
+        "id": 1,
+        "name": "boys building",
+        "img": "/building.jpg"
+    },
+    {
+        "id": 2,
+        "name": "girls building",
+        "img": "/building.jpg"
+    },
+    .....
+]
+
+----------------------------------------
+
+purpose = to get a specific building with all information relative to it 
+url = /api/buildings/[id]
+method = Get
+response = [
+    {
+        "floor_id": 2,
+        "floor_name": "2nd build first floor",
+        "floor_img": "/floor.jpg",
+        "rooms": [
+            {
+                "room_id": 4,
+                "room_name": "full room",
+                "room_img": "/room.jpg"
+            },
+            {
+                "room_id": 3,
+                "room_name": "classic room",
+                "room_img": "/room.jpg"
+            },
+            ....
+        ]
+    },
+    {
+        "floor_id": 3,
+        "floor_name": "2nd build second floor",
+        "floor_img": "/floor.jpg",
+        "rooms": [....]
+    },
+    ....
+]
