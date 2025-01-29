@@ -115,7 +115,7 @@ const page = ({ params }) => {
             />
           </Link>
         </div>
-        <div className="flex gap-[24px] flex-wrap">
+        <div className="flex gap-[16px] flex-wrap">
           {boyRooms.map((floor, index) => (
             <div
               key={index}

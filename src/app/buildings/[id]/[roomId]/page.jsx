@@ -1,11 +1,7 @@
-'use client'
 import React from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import SmallHeader from '@/components/building_page/SmallHeader'
 
 const page = () => {
-  const router = useRouter()
-
   const guests = [
     {
       name: 'John Doe',
@@ -81,12 +77,7 @@ const page = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mt-[40px] mb-[40px]">
-        <h1 className="text-[32px] font-bold ">Thu Thet Thar</h1>
-        <button onClick={() => router.back()} className="font-bold">
-          Back
-        </button>
-      </div>
+      <SmallHeader />
       <div>
         <div className="flex items-center justify-between">
           <p className="text-[24px]">
