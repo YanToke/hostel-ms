@@ -16,7 +16,7 @@ response = [
     },
     .....
 ]
-
+ 
 ----------------------------------------
 
 purpose = to get a specific building with all information relative to it 

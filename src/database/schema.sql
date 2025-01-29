@@ -1,36 +1,43 @@
 DROP DATABASE IF EXISTS hostel;
-
 CREATE DATABASE hostel CHARACTER SET utf8mb4;
-
 USE hostel;
 
-CREATE TABLE Building(
+-- Create Building Table
+CREATE TABLE Building (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     img VARCHAR(255) DEFAULT "/building.jpg"
 );
 
-INSERT INTO Building (name) VALUES ("boys building"),("girls building");
+INSERT INTO Building (name) VALUES 
+("boys building"), 
+("girls building");
 
-CREATE TABLE floors(
+-- Create Floor Table (with id and building_id)
+CREATE TABLE Floor (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    building_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
     img VARCHAR(255) DEFAULT "/floor.jpg",
-    FOREIGN KEY(building_id) REFERENCES Building(id) ON DELETE CASCADE
+    FOREIGN KEY (building_id) REFERENCES Building(id) ON DELETE CASCADE
 );
 
-INSERT INTO Floor (building_id,name) VALUES (1,"1st bulid first floor"),(2,"2nd build first floor"),(2,"2nd build second floor");
+INSERT INTO Floor (building_id, name) VALUES 
+(1, "1st build first floor"),
+(2, "2nd build first floor"),
+(2, "2nd build second floor");
 
-CREATE TABLE Room(
-    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+-- Create Room Table
+CREATE TABLE Room (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     floor_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
     img VARCHAR(255) DEFAULT "/room.jpg",
-    FOREIGN KEY(floor_id) REFERENCES Floor(id) ON DELETE CASCADE
+    FOREIGN KEY (floor_id) REFERENCES Floor(id) ON DELETE CASCADE
 );
 
-INSERT INTO Room (floor_id,name) VALUES
- (1,"fancy room"),
- (1,"normal room"),
- (2,"classic room"),
- (2,"full room");
-
+INSERT INTO Room (floor_id, name) VALUES
+(1, "fancy room"),
+(1, "normal room"),
+(2, "classic room"),
+(2, "full room");

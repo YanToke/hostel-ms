@@ -1,9 +1,9 @@
-import { getAllBuildings } from '@/models/Building'
 import Link from 'next/link'
 import React from 'react'
 
 const page = async () => {
-  const buildings = await getAllBuildings()
+  const data = await fetch('http://localhost:3000/api/buildings')
+  const buildings = await data.json()
 
   return (
     <div>
