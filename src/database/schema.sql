@@ -4,31 +4,33 @@ CREATE DATABASE hostel CHARACTER SET utf8mb4;
 
 USE hostel;
 
-CREATE TABLE buildings(
+CREATE TABLE Building(
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     img VARCHAR(255) DEFAULT "/building.jpg"
 );
 
-INSERT INTO buildings (name) VALUES ("boys rooms"),("girls rooms");
+INSERT INTO Building (name) VALUES ("boys building"),("girls building");
 
 CREATE TABLE floors(
-    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    img VARCHAR(255) DEFAULT "/floor.jpg"
+    img VARCHAR(255) DEFAULT "/floor.jpg",
+    FOREIGN KEY(building_id) REFERENCES Building(id) ON DELETE CASCADE
 );
 
-INSERT INTO floors (name) VALUES ("first floor"),("second floor");
+INSERT INTO Floor (building_id,name) VALUES (1,"1st bulid first floor"),(2,"2nd build first floor"),(2,"2nd build second floor");
 
-CREATE TABLE rooms(
+CREATE TABLE Room(
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    floor_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
-    img VARCHAR(255) DEFAULT "/room.jpg"
+    img VARCHAR(255) DEFAULT "/room.jpg",
+    FOREIGN KEY(floor_id) REFERENCES Floor(id) ON DELETE CASCADE
 );
 
-INSERT INTO rooms (name) VALUES
- ("fancy room"),
- ("normal room"),
- ("classic room"),
- ("full room");
+INSERT INTO Room (floor_id,name) VALUES
+ (1,"fancy room"),
+ (1,"normal room"),
+ (2,"classic room"),
+ (2,"full room");
 

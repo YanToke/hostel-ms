@@ -1,3 +1,7 @@
+import { getAllBuildings } from '@/models/Building'
+
 export default async function Home() {
-  return <></>
+  const buildings = await getAllBuildings()
+  console.log(buildings)
+  return <>Home</>
 }
