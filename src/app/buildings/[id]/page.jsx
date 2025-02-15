@@ -31,7 +31,7 @@ const Page = () => {
         )
         const data = await response.json()
         console.log('Building:', data)
-        setBuilding(data)
+        setBuilding(data);
 
         // Set initial floor data from URL param
         const floorIndex = searchParams.get('floor')
@@ -72,7 +72,7 @@ const Page = () => {
 
         <div className="flex justify-between items-center mb-[24px]">
           <h1 className="font-bold text-[24px] text-[#4F378B]">Boy Rooms</h1>
-          <Link href={'/buildings/create-floor'} className="flex items-center">
+          <Link href={`/buildings/create-floor?building_id=${buildingId}`} className="flex items-center">
             <p className="mr-[8px]">Create Floor</p>
             <img
               src="/system-icons/plus-circle.png"
@@ -100,11 +100,19 @@ const Page = () => {
         </div>
       </div>
 
-      <RoomCardContainer
+      {activeFloor?.toString() && <RoomCardContainer
+        rooms={rooms}
+        floorName={floorName}
+        buildingId={buildingId} 
+        floorId={building[activeFloor].floor_id}
+        />
+      }
+
+      {/* <RoomCardContainer
         rooms={rooms}
         floorName={floorName}
         buildingId={buildingId}
-      />
+      /> */}
     </>
   )
 }

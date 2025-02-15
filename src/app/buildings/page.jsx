@@ -16,7 +16,7 @@ const page = async () => {
         <Link href={'/buildings/create-building'} className="flex items-center">
           <p className="mr-[8px]">Create Building</p>
           <img
-            src="./system-icons/plus-circle.png"
+            src="/system-icons/plus-circle.png"
             className="w-[24px] h-[24px]"
           />
         </Link>

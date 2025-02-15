@@ -6,7 +6,7 @@ USE hostel;
 CREATE TABLE Building (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    img VARCHAR(255) DEFAULT "/building.jpg"
+    img VARCHAR(255) DEFAULT "/building-images/building.jpg"
 );
 
 INSERT INTO Building (name) VALUES 
@@ -18,7 +18,7 @@ CREATE TABLE Floor (
     id INT AUTO_INCREMENT PRIMARY KEY,
     building_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
-    img VARCHAR(255) DEFAULT "/floor.jpg",
+    img VARCHAR(255) DEFAULT "/floor-images/floor.jpg",
     FOREIGN KEY (building_id) REFERENCES Building(id) ON DELETE CASCADE
 );
 
@@ -32,7 +32,7 @@ CREATE TABLE Room (
     id INT AUTO_INCREMENT PRIMARY KEY,
     floor_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
-    img VARCHAR(255) DEFAULT "/room.jpg",
+    img VARCHAR(255) DEFAULT "/room-images/room.jpg",
     FOREIGN KEY (floor_id) REFERENCES Floor(id) ON DELETE CASCADE
 );
 
