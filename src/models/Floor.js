@@ -14,3 +14,8 @@ export async function getFloorById(id){
     const [floor] = await pool.query("SELECT * FROM Floor WHERE id=?",[id]);
     return floor[0];
 }
+
+export async function createFloor(building_id,name,img){
+    await pool.query(`INSERT INTO Floor (building_id,name,img) values ('${building_id}','${name}','${img}');`);
+    return true;
+}

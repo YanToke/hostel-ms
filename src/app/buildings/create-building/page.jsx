@@ -8,7 +8,7 @@ const page = () => {
   return (
     <div>
       <Header title={'Create Building'} />
-      <form>
+      <form onSubmit={submitHandler}>
         <p className="font-bold text-[#4F378B] mb-[16px]">Building Image</p>
         <label htmlFor="img">
           <img
@@ -34,6 +34,7 @@ const page = () => {
           type="text"
           className="border-[2px] border-black w-[344px] h-[40px] rounded-[8px] pl-[24px] mb-[40px]"
           placeholder="Enter building name"
+          onChange={(e) => setName(e.target.value)}
         />
 
         <br />

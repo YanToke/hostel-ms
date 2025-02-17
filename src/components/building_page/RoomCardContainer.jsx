@@ -1,12 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
 
-const RoomCardContainer = ({ rooms, floorName, buildingId }) => {
+const RoomCardContainer = ({ rooms, floorName, buildingId, floorId }) => {
   return (
     <div className="mt-[48px] mb-[40px]">
       <div className="flex justify-between items-center mb-[24px]">
         <h1 className="font-bold text-[24px] text-[#4F378B]">{floorName}</h1>
-        <Link href={'/buildings/create-room'} className="flex items-center">
+        <Link href={`/buildings/create-room?floor_id=${floorId}`} className="flex items-center">
           <p className="mr-[8px]">Create Room</p>
           <img
             src="/system-icons/plus-circle.png"

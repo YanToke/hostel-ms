@@ -39,3 +39,8 @@ export async function getBuildingInformationsById(building_id) {
     }, []);
     return result;
 }
+
+export async function createBuilding(name,img){
+    await pool.query(`INSERT INTO Building (name,img) values ('${name}','${img}');`)
+    return true;
+}
