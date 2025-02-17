@@ -81,7 +81,6 @@ const page = () => {
       <div>
         <div className="flex items-center justify-between">
           <p className="text-[24px]">
-            Building A / Floor 1/{' '}
             <span className="font-bold text-[#4F378B]">Room 1</span>
           </p>
           <button className="flex items-center gap-[14px] bg-[#AEFFB8] py-[8px] pl-[16px] pr-[8px] shadow-lg">

@@ -14,6 +14,8 @@ const Page = () => {
   const searchParams = useSearchParams()
   const params = useParams()
 
+  console.log(searchParams)
+
   // Fetch building data when buildingId changes
   useEffect(() => {
     if (params?.id) {
@@ -72,7 +74,10 @@ const Page = () => {
 
         <div className="flex justify-between items-center mb-[24px]">
           <h1 className="font-bold text-[24px] text-[#4F378B]">Boy Rooms</h1>
-          <Link href={'/buildings/create-floor'} className="flex items-center">
+          <Link
+            href={`/buildings/create-floor?buildingId=${buildingId}`}
+            className="flex items-center"
+          >
             <p className="mr-[8px]">Create Floor</p>
             <img
               src="/system-icons/plus-circle.png"

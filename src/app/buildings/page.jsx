@@ -13,7 +13,7 @@ const page = async () => {
       <div className="flex items-center justify-between mb-[24px]">
         <h1 className="text-[24px] text-[#4F378B] font-bold">Buildings</h1>
 
-        <Link href={'/buildings/create-building'} className="flex items-center">
+        <Link href={`/buildings/create-building`} className="flex items-center">
           <p className="mr-[8px]">Create Building</p>
           <img
             src="./system-icons/plus-circle.png"
@@ -25,7 +25,7 @@ const page = async () => {
         {buildings.map((building, index) => (
           <Link
             key={index}
-            href={`/buildings/${building.id}`}
+            href={`/buildings/${building.id}?buildingName=${building.name}`}
             className="w-[253px] h-[192px]"
           >
             <img

@@ -1,8 +1,10 @@
+'use client'
 import Header from '@/components/building_page/Header'
-import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 
 const page = () => {
+  const [image, setImage] = useState('')
+
   return (
     <div>
       <Header title={'Create Building'} />
@@ -10,13 +12,22 @@ const page = () => {
         <p className="font-bold text-[#4F378B] mb-[16px]">Building Image</p>
         <label htmlFor="img">
           <img
-            src="/building.jpg"
+            src={
+              !image
+                ? '/placeholder-images/placeholder.png'
+                : URL.createObjectURL(image)
+            }
             width={252}
             height={152}
-            className="rounded-[16px] shadow-lg mb-[40px] inline-block"
+            className="rounded-[16px] shadow-lg mb-[40px] inline-block w-[252px] h-[152px]"
           />
         </label>
-        <input id="img" type="file" hidden />
+        <input
+          id="img"
+          type="file"
+          hidden
+          onChange={(e) => setImage(e.target.files[0])}
+        />
 
         <p className="font-bold text-[#4F378B] mb-[16px]">Building Name</p>
         <input
