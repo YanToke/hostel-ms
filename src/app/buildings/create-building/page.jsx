@@ -1,9 +1,43 @@
 'use client'
 import Header from '@/components/building_page/Header'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
 const page = () => {
   const [image, setImage] = useState('')
+  const [data, setData] = useState({
+    name: '',
+  })
+  const router = useRouter()
+
+  const onChangeHandler = (event) => {
+    const name = event.target.name
+    const value = event.target.value
+    setData((prevData) => {
+      const newData = { ...prevData, [name]: value }
+      return newData
+    })
+  }
+
+  const submitHandler = async (event) => {
+    event.preventDefault()
+    const formData = new FormData()
+    formData.append('name', data.name)
+    formData.append('img', image)
+
+    try {
+      const res = await fetch(`http://localhost:3000/api/buildings`, {
+        method: 'POST',
+        body: formData,
+      })
+
+      const data = await res.json()
+      console.log(data)
+      router.push('/buildings')
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div>
@@ -31,10 +65,12 @@ const page = () => {
 
         <p className="font-bold text-[#4F378B] mb-[16px]">Building Name</p>
         <input
+          name="name"
+          required
           type="text"
           className="border-[2px] border-black w-[344px] h-[40px] rounded-[8px] pl-[24px] mb-[40px]"
           placeholder="Enter building name"
-          onChange={(e) => setName(e.target.value)}
+          onChange={onChangeHandler}
         />
 
         <br />

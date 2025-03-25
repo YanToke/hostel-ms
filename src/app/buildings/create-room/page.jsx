@@ -1,27 +1,27 @@
 'use client'
 import Header from '@/components/building_page/Header'
-import Link from 'next/link'
 import React, { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 const page = () => {
-  const [name, setName] = useState('');
-  const [image, setImage] = useState('');
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const floorId = searchParams.get('floor_id');
+  const [name, setName] = useState('')
+  const [image, setImage] = useState('')
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const floorId = searchParams.get('floor_id')
+
   const submitHandler = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('floor_id',floorId);
-    formData.append('img', image);
+    e.preventDefault()
+    const formData = new FormData()
+    formData.append('name', name)
+    formData.append('floor_id', floorId)
+    formData.append('img', image)
     try {
       const res = await fetch(`http://localhost:3000/api/rooms`, {
         method: 'POST',
-        body: formData
+        body: formData,
       })
-      router.back();
+      router.back()
     } catch (error) {
       console.log(error)
     }
@@ -33,15 +33,21 @@ const page = () => {
         <p className="font-bold text-[#4F378B] mb-[16px]">Room Image</p>
         <label htmlFor="img">
           <img
-            src="/room-images/room.jpg"
+            src={
+              !image
+                ? '/placeholder-images/placeholder.png'
+                : URL.createObjectURL(image)
+            }
             width={252}
             height={152}
-            className="rounded-[16px] shadow-lg mb-[40px] inline-block"
+            className="rounded-[16px] shadow-lg mb-[40px] inline-block w-[252px] h-[152px]"
           />
         </label>
-        <input id="img" type="file" hidden
+        <input
+          id="img"
+          type="file"
+          hidden
           onChange={(e) => setImage(e.target.files[0])}
-
         />
 
         <p className="font-bold text-[#4F378B] mb-[16px]">Room Name</p>

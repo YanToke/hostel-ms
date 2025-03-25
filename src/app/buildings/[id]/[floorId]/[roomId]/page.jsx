@@ -1,7 +1,8 @@
 import React from 'react'
 import SmallHeader from '@/components/building_page/SmallHeader'
 
-const page = () => {
+const page = async ({ params }) => {
+  const { id: buildingId, floorId: floorId, roomId: roomId } = await params
   const guests = [
     {
       name: 'John Doe',
@@ -75,13 +76,19 @@ const page = () => {
     },
   ]
 
+  const data = await fetch(`http://localhost:3000/api/buildings/${buildingId}`)
+  const building = await data.json()
+  const floor = building.find((b) => b.floor_id.toString() === floorId)
+  const room = floor.rooms.find((r) => r.room_id.toString() === roomId)
+  console.log(room)
+
   return (
     <div>
       <SmallHeader />
       <div>
         <div className="flex items-center justify-between">
           <p className="text-[24px]">
-            <span className="font-bold text-[#4F378B]">Room 1</span>
+            <span className="font-bold text-[#4F378B]">{room.room_name}</span>
           </p>
           <button className="flex items-center gap-[14px] bg-[#AEFFB8] py-[8px] pl-[16px] pr-[8px] shadow-lg">
             <span className="font-bold text-[#4F378B]">Add Guest</span>
