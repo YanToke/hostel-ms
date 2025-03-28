@@ -1,9 +1,9 @@
 --------------------------------------------------API Document-----------------------------------------------
 
-purpose = to get a list of buildings
-url = /api/buildings
-method = Get
-response = [
+Purpose = to get a list of buildings
+URL = /api/buildings
+Method = GET
+Response = [
     {
         "id": 1,
         "name": "boys building",
@@ -17,35 +17,124 @@ response = [
     .....
 ]
  
-----------------------------------------
+--------------------------------------------------
 
-purpose = to get a specific building with all information relative to it 
-url = /api/buildings/[id]
-method = Get
-response = [
+Purpose = to get a list of -----  "FLOORS" ---- that are belong to that specific building Id
+URL = /api/buildings/[building_id]
+Method = GET
+Response = [
     {
-        "floor_id": 2,
-        "floor_name": "2nd build first floor",
-        "floor_img": "/floor.jpg",
-        "rooms": [
-            {
-                "room_id": 4,
-                "room_name": "full room",
-                "room_img": "/room.jpg"
-            },
-            {
-                "room_id": 3,
-                "room_name": "classic room",
-                "room_img": "/room.jpg"
-            },
-            ....
-        ]
+        "id": 2,
+        "building_id": 2,
+        "name": "2nd build first floor",
+        "img": "/floor-images/floor.jpg"
     },
     {
-        "floor_id": 3,
-        "floor_name": "2nd build second floor",
-        "floor_img": "/floor.jpg",
-        "rooms": [....]
+        "id": 3,
+        "building_id": 2,
+        "name": "2nd build second floor",
+        "img": "/floor-images/floor.jpg"
     },
-    ....
+    ........
 ]
+
+
+----------------------------------------------------------
+Purpose = to get a list of -----  "ROOMS" ---- that are belong to that specific floor Id
+URL = /api/buildings/[building_id]/[floor_id]
+Method = GET
+Response = [
+    {
+        "id": 1,
+        "floor_id": 1,
+        "name": "i am editing fancy room capacity to 5",
+        "img": "/room-images/room.jpg",
+        "capacity": 5
+    },
+    {
+        "id": 2,
+        "floor_id": 1,
+        "name": "normal room",
+        "img": "/room-images/room.jpg",
+        "capacity": 5
+    }
+]
+
+----------------------------------------------------------
+
+
+Purpose = To Update a Building
+URL = /api/buildings/[building_id]
+Method = PUT
+body(via form data) = {
+    name : "buidling name",
+    img : IMAGE_FILE
+}
+Response={
+    message : "Successfully updated"
+}
+
+----------------------------------------------------------
+
+
+Purpose = To Update a Floor
+URL = /api/floors/[floor_id]
+Method = PUT
+body(via form data) = {
+    buildingId : buildingId(integer),
+    name : "floor name",
+    img : IMAGE_FILE
+}
+Response={
+    message : "Successfully updated"
+}
+
+----------------------------------------------------------
+
+
+Purpose = To Update a Room
+URL = /api/rooms/[building_id]
+Method = PUT
+body(via form data) = {
+    floorId : floorId(integer),
+    name : "buidling name",
+    img : IMAGE_FILE,
+    capacity : capacity(integer)
+}
+Response={
+    message : "Successfully updated"
+}
+
+--------------------------------------------------------------
+
+Purpose = To Delete a Building
+URL = /api/buildings/[building_id]
+Method = DELETE
+Response={
+    message : "Successfully deleted"
+}
+
+
+--------------------------------------------------------------
+
+
+Purpose = To Delete a Floor
+URL = /api/floors/[floor_id]
+Method = DELETE
+Response={
+    message : "Successfully deleted"
+}
+
+
+--------------------------------------------------------------
+
+
+Purpose = To Delete a Room
+URL = /api/rooms/[room_id]
+Method = DELETE
+Response={
+    message : "Successfully deleted"
+}
+
+
+--------------------------------------------------------------

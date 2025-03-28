@@ -33,11 +33,12 @@ CREATE TABLE Room (
     floor_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
     img VARCHAR(255) DEFAULT "/room-images/room.jpg",
+    capacity INT NOT NULL,
     FOREIGN KEY (floor_id) REFERENCES Floor(id) ON DELETE CASCADE
 );
 
-INSERT INTO Room (floor_id, name) VALUES
-(1, "fancy room"),
-(1, "normal room"),
-(2, "classic room"),
-(2, "full room");
+INSERT INTO Room (floor_id, name,capacity) VALUES
+(1, "fancy room",3),
+(1, "normal room",5),
+(2, "classic room",4),
+(2, "full room",3);

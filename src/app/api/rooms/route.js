@@ -14,7 +14,7 @@ export async function POST(request) {
             await createRoom(floor_id, name, '/room-images/'+filename);
             return NextResponse.json({ message: 'Successfully Created' })
         }
-        img = '/room-images/room.jpg';
+        img = process.env.DEFAULT_ROOM_IMAGE;
         await createRoom(floor_id, name, img);
         return NextResponse.json({ message: 'Successfully Created' })
     } catch (error) {

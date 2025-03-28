@@ -40,7 +40,22 @@ export async function getBuildingInformationsById(building_id) {
     return result;
 }
 
+export async function getBuildingById(buildingId){
+    const [building] = await pool.query("SELECT * FROM Building WHERE id=?",[buildingId])
+    return building[0];
+}
+
 export async function createBuilding(name,img){
-    await pool.query(`INSERT INTO Building (name,img) values ('${name}','${img}');`)
+    await pool.query(`INSERT INTO Building (name,img) values ('${name}','${img}');`);
+    return true;
+}
+
+export async function updateBuilding(id,name,img){
+    await pool.query(`UPDATE Building SET name='${name}',img='${img}' where id=${id};`);
+    return true;
+}
+
+export async function deleteBuildingById(id){
+    await pool.query(`DELETE FROM Building WHERE id=${id}`);
     return true;
 }
