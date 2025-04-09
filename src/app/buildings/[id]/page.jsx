@@ -5,7 +5,9 @@ const Page = async ({ params }) => {
   const { id: buildingId } = await params
   const data = await fetch(`http://localhost:3000/api/buildings/${buildingId}`)
   const building = await data.json()
+  console.log(building)
 
+  const buildingName = await getBuildingName(buildingId)
   return (
     <>
       <div>
@@ -18,7 +20,7 @@ const Page = async ({ params }) => {
 
         <div className="flex justify-between items-center mb-[24px]">
           <h1 className="font-bold text-[24px] text-[#4F378B]">
-            {getBuildingName(buildingId)}
+            {buildingName}
           </h1>
           <Link
             href={`/buildings/create-floor?building_id=${buildingId}`}
@@ -35,15 +37,15 @@ const Page = async ({ params }) => {
         <div className="flex gap-[16px] flex-wrap">
           {building.map((floor, index) => (
             <Link
-              href={`/buildings/${buildingId}/${floor.floor_id}`}
+              href={`/buildings/${buildingId}/${floor.id}`}
               key={index}
               className="w-[253px] h-[192px] cursor-pointer"
             >
               <img
-                src={floor.floor_img}
+                src={floor.img}
                 className={`h-[152px] w-[253px] rounded-[16px] shadow-lg`}
               />
-              <p className="mt-[16px] font-bold">{floor.floor_name}</p>
+              <p className="mt-[16px] font-bold">{floor.name}</p>
             </Link>
           ))}
         </div>
