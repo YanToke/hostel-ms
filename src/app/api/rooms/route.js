@@ -1,11 +1,16 @@
 import { getDataFromForm, handleImage } from "@/libs/utils";
-import { createRoom } from "@/models/Room";
+import { createRoom, getAllRooms } from "@/models/Room";
 import { NextResponse } from "next/server";
+
+export async function GET(){
+    const rooms = await getAllRooms();
+    return NextResponse.json(rooms);
+}
 
 export async function POST(request) {
     try {
         const formData = await request.formData();
-        let { name, img, floor_id } = getDataFromForm(formData,'name','img','floor_id');
+        let { name, img, floor_id, capacity } = getDataFromForm(formData,'name','img','floor_id','capacity');
         if (!floor_id) {
             return NextResponse.json({ message: "floor_id is required" }, { status: 400 });
         }
@@ -15,7 +20,7 @@ export async function POST(request) {
             return NextResponse.json({ message: 'Successfully Created' })
         }
         img = process.env.DEFAULT_ROOM_IMAGE;
-        await createRoom(floor_id, name, img);
+        await createRoom(floor_id, name, img, capacity);
         return NextResponse.json({ message: 'Successfully Created' })
     } catch (error) {
         console.log(error);

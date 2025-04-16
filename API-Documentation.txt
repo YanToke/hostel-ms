@@ -107,6 +107,23 @@ Response={
 
 --------------------------------------------------------------
 
+Purpose = To Update a Resident
+URL = /api/residents/[resident_id]
+Method = PUT
+body(via form data) = {
+    room_id : room_id,
+    roll_no : roll_no,
+    name : "resident name",
+    major : "major",
+    status : "paid" or "unpaid",
+    phone : "092134542"
+}
+Response={
+    message : "Successfully updated"
+}
+
+--------------------------------------------------------------
+
 Purpose = To Delete a Building
 URL = /api/buildings/[building_id]
 Method = DELETE
@@ -131,6 +148,17 @@ Response={
 
 Purpose = To Delete a Room
 URL = /api/rooms/[room_id]
+Method = DELETE
+Response={
+    message : "Successfully deleted"
+}
+
+
+--------------------------------------------------------------
+
+
+Purpose = To Delete a Resident
+URL = /api/rooms/[resident_id]
 Method = DELETE
 Response={
     message : "Successfully deleted"

@@ -11,7 +11,7 @@ const page = async ({ params }) => {
   )
   const rooms = await data.json()
   console.log(rooms)
-  const floorName = await getFloorName(floorId, buildingId)
+  const floorName = await getFloorName(buildingId , floorId )
   return (
     <>
       <SmallHeader />

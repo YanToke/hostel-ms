@@ -2,7 +2,6 @@ DROP DATABASE IF EXISTS hostel;
 CREATE DATABASE hostel CHARACTER SET utf8mb4;
 USE hostel;
 
--- Create Building Table
 CREATE TABLE Building (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -42,3 +41,20 @@ INSERT INTO Room (floor_id, name,capacity) VALUES
 (1, "normal room",5),
 (2, "classic room",4),
 (2, "full room",3);
+
+CREATE TABLE Resident (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    room_id INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    roll_no VARCHAR(255) NOT NULL,
+    major VARCHAR(255) NOT NULL,
+    phone VARCHAR(255) NOT NULL,
+    status ENUM('paid','unpaid'),
+    FOREIGN KEY (room_id) REFERENCES Room(id) ON DELETE CASCADE
+);
+
+INSERT INTO Resident (room_id,name,roll_no,major,phone,status) VALUES
+(1,'Mg Hla','1katha-1','CS','09342523','paid'),
+(1,'Mg Min','4katha-1','CS','09323521','paid'),
+(2,'Mg Kyaw','2phys-1','Physics','0926456767','unpaid'),
+(3,'Mg Ba','3chem-1','Chemistry','098542522','paid');
