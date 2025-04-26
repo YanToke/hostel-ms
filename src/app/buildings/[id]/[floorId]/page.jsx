@@ -1,7 +1,10 @@
+// To display all ROOMS
+
 import React from 'react'
 import Link from 'next/link'
 import SmallHeader from '@/components/building_page/SmallHeader'
 import { getFloorName } from '@/libs/getNames'
+import DeleteBtn from '@/components/building_page/DeleteBtn'
 
 const page = async ({ params }) => {
   const { id: buildingId, floorId: floorId } = await params
@@ -11,14 +14,14 @@ const page = async ({ params }) => {
   )
   const rooms = await data.json()
   console.log(rooms)
-  const floorName = await getFloorName(buildingId , floorId )
+  const floorName = await getFloorName(buildingId, floorId)
   return (
     <>
       <SmallHeader />
       <div className="flex justify-between items-center mb-[24px]">
         <h1 className="font-bold text-[24px] text-[#4F378B]">{floorName}</h1>
         <Link
-          href={`/buildings/create-room?floor_id=${floorId}`}
+          href={`/buildings/create-room?building_id=${buildingId}&floor_id=${floorId}`}
           className="flex items-center"
         >
           <p className="mr-[8px]">Create Room</p>
@@ -34,17 +37,44 @@ const page = async ({ params }) => {
           <p>No Room Availabe</p>
         ) : (
           rooms.map((room, index) => (
-            <Link
-              key={index}
-              href={`/buildings/${buildingId}/${floorId}/${room.id}`}
-              className="w-[253px] h-[192px]"
-            >
-              <img
-                src={room.img}
-                className="h-[152px] w-[253px] rounded-[16px] shadow-lg"
-              />
-              <p className="mt-[16px] font-bold">{room.name}</p>
-            </Link>
+            <div key={index}>
+              <Link
+                href={`/buildings/${buildingId}/${floorId}/${room.id}`}
+                className="w-[253px] h-[192px]"
+              >
+                <img
+                  src={room.img}
+                  className="h-[152px] w-[253px] rounded-[16px] shadow-lg"
+                />
+                <div className="flex items-center justify-between mt-[16px]">
+                  <p className=" font-bold">{room.name}</p>
+                  <div className="flex items-center">
+                    <img
+                      src="/system-icons/bed.png"
+                      className="w-[22px] mr-[8px]"
+                    />
+                    <p className="font-bold text-[#4F378B]">{room.capacity}</p>
+                  </div>
+                </div>
+              </Link>
+              <Link
+                href={`/buildings/edit-room?building_id=${buildingId}&floor_id=${floorId}&room_id=${room.id}`}
+                className="text-[#4F378B] font-bold hover:text-black flex  items-center mt-[8px] mb-[8px]"
+              >
+                <img
+                  src="/system-icons/square-pen.png"
+                  className="w-[18px] mr-[8px]"
+                />
+                Edit
+              </Link>
+
+              {/*
+              targetId = "the id of the building, floor or room"
+              deletingFor = "variable for api route"
+                            its value can be "buildings", "floors", "rooms"
+            */}
+              <DeleteBtn targetId={room.id} deletingFor={'rooms'} />
+            </div>
           ))
         )}
       </div>

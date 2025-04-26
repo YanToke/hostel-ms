@@ -1,3 +1,5 @@
+//To display all Buildings
+import DeleteBtn from '@/components/building_page/DeleteBtn'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -22,22 +24,40 @@ const page = async () => {
           />
         </Link>
       </div>
-      <div className="flex flex-nowarp gap-[24px]">
+      <div className="flex flex-wrap gap-[24px] w-[100%]">
         {buildings.map((building, index) => (
-          <Link
-            key={index}
-            href={`/buildings/${building.id}`}
-            className="w-[253px] h-[192px]"
-          >
-            <Image
-              src={building.img}
-              width={253}
-              height={152}
-              className="h-[152px] w-[253px] rounded-[16px] shadow-lg"
-              alt="image"
-            />
-            <p className="mt-[16px] font-bold">{building.name}</p>
-          </Link>
+          <div key={index}>
+            <Link
+              href={`/buildings/${building.id}`}
+              className="w-[253px] h-[192px]"
+            >
+              <Image
+                src={building.img}
+                width={253}
+                height={152}
+                className="h-[152px] w-[253px] rounded-[16px] shadow-lg"
+                alt="image"
+              />
+              <p className="mt-[16px] font-bold">{building.name}</p>
+            </Link>
+            <Link
+              href={`/buildings/edit-building?building_id=${building.id}`}
+              className="text-[#4F378B] font-bold hover:text-black flex  items-center mt-[8px] mb-[8px]"
+            >
+              <img
+                src="/system-icons/square-pen.png"
+                className="w-[18px] mr-[8px]"
+              />
+              Edit
+            </Link>
+
+            {/*
+              targetId = "the id of the building, floor or room"
+              deletingFor = "variable for api route"
+                            its value can be "buildings", "floors", "rooms"
+            */}
+            <DeleteBtn targetId={building.id} deletingFor={'buildings'} />
+          </div>
         ))}
       </div>
     </div>

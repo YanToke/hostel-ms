@@ -13,11 +13,8 @@ export const getFloorName = async (buildingId, floorId) => {
 }
 
 export const getRoomName = async (buildingId, floorId, roomId) => {
-  console.log(buildingId)
-  console.log(floorId)
-  console.log(roomId)
   const data = await fetch(
-    `http://localhost:3000/api/buidings/${buildingId}/${floorId}`
+    `http://localhost:3000/api/buildings/${buildingId}/${floorId}`
   )
   const rooms = await data.json()
   const room = rooms.find((r) => r.id.toString() === roomId)

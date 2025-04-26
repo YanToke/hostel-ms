@@ -1,3 +1,4 @@
+// To display create-room page
 'use client'
 import Header from '@/components/building_page/Header'
 import React, { useState } from 'react'
@@ -6,9 +7,11 @@ import { useRouter, useSearchParams } from 'next/navigation'
 const page = () => {
   const [name, setName] = useState('')
   const [image, setImage] = useState('')
+  const [capacity, setCapacity] = useState(0)
   const router = useRouter()
   const searchParams = useSearchParams()
   const floorId = searchParams.get('floor_id')
+  const buildingId = searchParams.get('building_id')
 
   const submitHandler = async (e) => {
     e.preventDefault()
@@ -16,12 +19,13 @@ const page = () => {
     formData.append('name', name)
     formData.append('floor_id', floorId)
     formData.append('img', image)
+    formData.append('capacity', capacity || 0)
     try {
       const res = await fetch(`http://localhost:3000/api/rooms`, {
         method: 'POST',
         body: formData,
       })
-      router.back()
+      router.push(`/buildings/${buildingId}/${floorId}`)
     } catch (error) {
       console.log(error)
     }
@@ -54,8 +58,16 @@ const page = () => {
         <input
           type="text"
           className="border-[2px] border-black w-[344px] h-[40px] rounded-[8px] pl-[24px] mb-[40px]"
-          placeholder="Enter building name"
+          placeholder="Enter room name"
           onChange={(e) => setName(e.target.value)}
+        />
+
+        <p className="font-bold text-[#4F378B] mb-[16px]">Capacity</p>
+        <input
+          type="number"
+          className="border-[2px] border-black w-[344px] h-[40px] rounded-[8px] pl-[24px] mb-[40px]"
+          placeholder="Enter room capacity"
+          onChange={(e) => setCapacity(e.target.value)}
         />
 
         <br />

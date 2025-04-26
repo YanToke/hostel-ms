@@ -93,7 +93,7 @@ Response={
 
 
 Purpose = To Update a Room
-URL = /api/rooms/[building_id]
+URL = /api/rooms/[room_id]
 Method = PUT
 body(via form data) = {
     floorId : floorId(integer),

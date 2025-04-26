@@ -1,5 +1,8 @@
+// To Display All FLOORS
+
 import { getBuildingName } from '@/libs/getNames'
 import Link from 'next/link'
+import DeleteBtn from '@/components/building_page/DeleteBtn'
 
 const Page = async ({ params }) => {
   const { id: buildingId } = await params
@@ -36,17 +39,37 @@ const Page = async ({ params }) => {
 
         <div className="flex gap-[16px] flex-wrap">
           {building.map((floor, index) => (
-            <Link
-              href={`/buildings/${buildingId}/${floor.id}`}
-              key={index}
-              className="w-[253px] h-[192px] cursor-pointer"
-            >
-              <img
-                src={floor.img}
-                className={`h-[152px] w-[253px] rounded-[16px] shadow-lg`}
-              />
-              <p className="mt-[16px] font-bold">{floor.name}</p>
-            </Link>
+            <div key={index}>
+              <Link
+                href={`/buildings/${buildingId}/${floor.id}`}
+                className="w-[253px] h-[192px] cursor-pointer"
+              >
+                <img
+                  src={floor.img}
+                  className={`h-[152px] w-[253px] rounded-[16px] shadow-lg`}
+                />
+                <div>
+                  <p className="mt-[16px] font-bold">{floor.name}</p>
+                </div>
+              </Link>
+              <Link
+                href={`/buildings/edit-floor?building_id=${buildingId}&floor_id=${floor.id}`}
+                className="text-[#4F378B] font-bold hover:text-black flex  items-center mt-[8px] mb-[8px]"
+              >
+                <img
+                  src="/system-icons/square-pen.png"
+                  className="w-[18px] mr-[8px]"
+                />
+                Edit
+              </Link>
+
+              {/*
+              targetId = "the id of the building, floor or room"
+              deletingFor = "variable for api route"
+                            its value can be "buildings", "floors", "rooms"
+            */}
+              <DeleteBtn targetId={floor.id} deletingFor={'floors'} />
+            </div>
           ))}
         </div>
       </div>
