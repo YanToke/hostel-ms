@@ -62,6 +62,41 @@ Response = [
 
 ----------------------------------------------------------
 
+Purpose = To Get A List Of Residents
+URL = /api/residents
+Method = GET
+Response = [
+  {
+    "id": 1,
+    "room_id": 1,
+    "name": "Mg-hla-edit-put",
+    "father_name": "iamfather",
+    "nrc_no": "23154235425",
+    "roll_no": "1katha-postman",
+    "major": "cs",
+    "address": "mandalay-edit",
+    "student_phone": "5678685685",
+    "parent_phone": "542345432",
+    "gender": "male"
+  },
+  {
+    "id": 2,
+    "room_id": 1,
+    "name": "Jane Smith",
+    "father_name": "Michael Smith",
+    "nrc_no": "12/MN654321",
+    "roll_no": "54321",
+    "major": "Electrical Engineering",
+    "address": "456 Oak St, Townsville",
+    "student_phone": "555-2345",
+    "parent_phone": "555-8765",
+    "gender": "female"
+  },
+  .....
+]
+ 
+--------------------------------------------------
+
 
 Purpose = To Update a Building
 URL = /api/buildings/[building_id]
@@ -111,12 +146,16 @@ Purpose = To Update a Resident
 URL = /api/residents/[resident_id]
 Method = PUT
 body(via form data) = {
-    room_id : room_id,
-    roll_no : roll_no,
-    name : "resident name",
-    major : "major",
-    status : "paid" or "unpaid",
-    phone : "092134542"
+    room_id : 1,
+    name : "Mg-hla-edit-put",
+    father_name : "iamfather",
+    nrc_no : "23154235425",
+    roll_no : "1katha-postman",
+    major : "cs",
+    address : "mandalay-edit",
+    student_phone : "5678685685",
+    parent_phone : "542345432",
+    gender : "male"
 }
 Response={
     message : "Successfully updated"
