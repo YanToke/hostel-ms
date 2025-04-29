@@ -32,8 +32,14 @@ export async function PUT(request, { params }) {
     }
     const formData = await request.formData()
     let { name, img } = getDataFromForm(formData, 'name', 'img')
-    console.log('Image is ', img)
-    if (
+    const age = formData.get("age");
+    if(typeof img === 'string'){
+      img = img.split('/')[2];
+      console.log(img);
+    }else if (img && img.name !== '/building-images/building.jpg' && img.name == building.img) {
+      img = img;
+      console.log("I am inside if")
+    }else if (
       img &&
       img.name !== '' &&
       `/building-images/${img.name}` === '/building-images/building.jpg'
@@ -52,10 +58,10 @@ export async function PUT(request, { params }) {
     } else if (
       img &&
       img.name !== '' &&
-      `/building-images/${img.name}` !== '/building-images/building.jpg'
+      img.name !== '/building-images/building.jpg'
     ) {
       console.log('If else 2')
-
+      console.log("Image name is ",img.name)
       if (building.img.split('/')[2] !== 'building.jpg') {
         await deleteImage('building-images', building.img.split('/')[2])
       }

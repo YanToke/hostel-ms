@@ -5,8 +5,8 @@ import { useState } from 'react'
 import Header from '../../Header'
 
 const FloorEditForm = ({ name, img, floorId, buildingId }) => {
-  const [image, setImage] = useState(null)
   const [previewImage, setPreviewImage] = useState(img)
+  const [image, setImage] = useState(previewImage)
   const [data, setData] = useState({ name })
   const router = useRouter()
   console.log('name', name)
@@ -27,7 +27,7 @@ const FloorEditForm = ({ name, img, floorId, buildingId }) => {
     event.preventDefault()
     const formData = new FormData()
     formData.append('name', data.name)
-    if (image) formData.append('img', image)
+    formData.append('img', image)
 
     try {
       const res = await fetch(`http://localhost:3000/api/floors/${floorId}`, {

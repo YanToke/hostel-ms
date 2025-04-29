@@ -4,15 +4,16 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
 const BuildingEditForm = ({ id, name, img }) => {
-  const [image, setImage] = useState(null)
   const [previewImage, setPreviewImage] = useState(img)
+  const [image, setImage] = useState(previewImage);
   const [data, setData] = useState({ name })
   const router = useRouter()
-  console.log('name', name)
-  console.log('img', img)
+  console.log('name', data.name)
+  console.log('img', image)
 
   function onChangeHandler(event) {
     const { name, value } = event.target
+    console.log("I am event target",event.target)
     setData((prevData) => ({ ...prevData, [name]: value }))
   }
 
@@ -24,10 +25,10 @@ const BuildingEditForm = ({ id, name, img }) => {
 
   const submitHandler = async (event) => {
     event.preventDefault()
+    console.log("Before push",data.name,"Image",image)
     const formData = new FormData()
     formData.append('name', data.name)
-    if (image) formData.append('img', image)
-
+    formData.append('img', image)
     try {
       const res = await fetch(`http://localhost:3000/api/buildings/${id}`, {
         method: 'PUT',
@@ -49,7 +50,7 @@ const BuildingEditForm = ({ id, name, img }) => {
         <p className="font-bold text-[#4F378B] mb-[16px]">Building Image</p>
         <label htmlFor="img">
           <img
-            src={previewImage || '/placeholder-images/placeholder.png'}
+            src={previewImage || '/building-images/building.jpg'}
             width={252}
             height={152}
             className="rounded-[16px] shadow-lg mb-[40px] inline-block w-[252px] h-[152px]"

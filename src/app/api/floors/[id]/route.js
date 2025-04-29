@@ -21,7 +21,10 @@ export async function PUT(request, { params }) {
       'img'
     )
     console.log('Image is ', img)
-    if (
+    if (typeof img === 'string') {
+      img = img.split('/')[2];
+      console.log(img);
+    } else if (
       img &&
       img.name !== '' &&
       `/floor-images/${img.name}` === '/floor-images/floor.jpg'
