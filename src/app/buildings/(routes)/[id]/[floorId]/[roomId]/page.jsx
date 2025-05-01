@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const page = async ({ params }) => {
   const { id: buildingId, floorId: floorId, roomId: roomId } = await params
-  console.log('room id is ', roomId)
+
   const data = await fetch(
     `http://localhost:3000/api/buildings/${buildingId}/${floorId}/${roomId}`
   )
@@ -57,10 +57,16 @@ const page = async ({ params }) => {
               <tbody>
                 {residents.map((resident, index) => (
                   <tr key={index} className={`border-b`}>
-                    <td className="px-4 py-4">{resident.name}</td>
+                    <td className="px-4 py-4">
+                      <Link
+                        href={`/buildings/${buildingId}/${floorId}/${roomId}/${resident.id}`}
+                      >
+                        {resident.name}
+                      </Link>
+                    </td>
                     <td className="px-4 py-4">{resident.roll_no}</td>
                     <td className="px-4 py-4">{resident.major}</td>
-                    <td className="px-4 py-4">{resident.phone}</td>
+                    <td className="px-4 py-4">{resident.student_phone}</td>
                     <td className="px-4 py-4">
                       <span
                         className={`px-2 py-1 rounded ${
@@ -73,13 +79,16 @@ const page = async ({ params }) => {
                       </span>
                     </td>
                     <td className="px-4 py-2">
-                      <button className="flex items-center text-gray-700 hover:text-gray-900">
+                      <Link
+                        href={`/buildings/edit-resident?building_id=${buildingId}&floor_id=${floorId}&room_id=${roomId}&resident_id=${resident.id}`}
+                        className="flex items-center text-gray-700 hover:text-gray-900"
+                      >
                         <img
                           src="/system-icons/user-edit.png"
                           alt="Edit"
                           className="w-[32px]"
                         />
-                      </button>
+                      </Link>
                     </td>
                   </tr>
                 ))}

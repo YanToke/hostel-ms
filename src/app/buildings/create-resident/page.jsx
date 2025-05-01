@@ -1,6 +1,5 @@
 'use client'
-import Header from '@/components/building_page/Header'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useState } from 'react'
 
 const page = () => {
@@ -15,6 +14,10 @@ const page = () => {
     resident_phone: '',
     parent_phone: '',
   })
+  const searchParams = useSearchParams()
+  const buildingId = searchParams.get('building_id')
+  const floorId = searchParams.get('floor_id')
+  const roomId = searchParams.get('room_id')
 
   console.log(data)
   const router = useRouter()
@@ -33,17 +36,27 @@ const page = () => {
   const submitHandler = async (event) => {
     event.preventDefault()
     const formData = new FormData()
+    formData.append('room_id', roomId)
     formData.append('name', data.name)
+    formData.append('father_name', data.father_name)
+    formData.append('nrc_no', data.nrc_no)
+    formData.append('roll_no', data.roll_number)
+    formData.append('major', data.major)
+    formData.append('address', data.address)
+    formData.append('student_phone', data.resident_phone)
+    formData.append('parent_phone', data.parent_phone)
+    formData.append('gender', data.gender)
 
     try {
       const res = await fetch(`http://localhost:3000/api/residents`, {
         method: 'POST',
         body: formData,
       })
-
-      const data = await res.json()
-      console.log(data)
-      router.push('/buildings')
+      if (!res.ok) {
+        console.log(await res.json())
+      } else {
+        router.push(`/buildings/${buildingId}/${floorId}/${roomId}`)
+      }
     } catch (error) {
       console.log(error)
     }
