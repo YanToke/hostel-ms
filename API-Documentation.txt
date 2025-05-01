@@ -16,7 +16,18 @@ Response = [
     },
     .....
 ]
- 
+
+--------------------------------------------------
+
+Purpose = To Get "A Specific" building
+URL = /api/buildings/[building_id]/self
+Method = GET
+Response = {
+  "id": 1,
+  "name": "boys building",
+  "img": "/building-images/building.jpg"
+}
+
 --------------------------------------------------
 
 Purpose = to get a list of -----  "FLOORS" ---- that are belong to that specific building Id
@@ -62,6 +73,75 @@ Response = [
 
 ----------------------------------------------------------
 
+Purpose = To Get A List Of Floors
+URL = /api/floors
+Method = GET
+Response = [
+  {
+    "id": 1,
+    "building_id": 1,
+    "name": "1st build first floor",
+    "img": "/floor-images/floor.jpg"
+  },
+  {
+    "id": 2,
+    "building_id": 2,
+    "name": "2nd build first floor",
+    "img": "/floor-images/floor.jpg"
+  },
+  ....
+]
+
+----------------------------------------------------------
+
+Purpose = To Get "A Specific" Floor
+Method = GET
+URL = /api/floors/[floor_id]
+Response = {
+  "id": 1,
+  "building_id": 1,
+  "name": "1st build first floor",
+  "img": "/floor-images/floor.jpg"
+}
+
+----------------------------------------------------------
+
+Purpose = To Get A List Of Rooms
+URL = /api/rooms
+Method = GET
+Response = [
+  {
+    "id": 1,
+    "floor_id": 1,
+    "name": "fancy room",
+    "img": "/room-images/room.jpg",
+    "capacity": 3
+  },
+  {
+    "id": 2,
+    "floor_id": 2,
+    "name": "normal room",
+    "img": "/room-images/room.jpg",
+    "capacity": 5
+  },
+  ....
+]
+
+----------------------------------------------------------
+
+Purpose = To Get "A Specific" Room
+URL = /api/rooms/[room_id]
+Method = GET
+Response = {
+  "id": 1,
+  "floor_id": 1,
+  "name": "fancy room",
+  "img": "/room-images/room.jpg",
+  "capacity": 3
+}
+
+----------------------------------------------------------
+
 Purpose = To Get A List Of Residents
 URL = /api/residents
 Method = GET
@@ -98,10 +178,28 @@ Response = [
 --------------------------------------------------
 
 
+Purpose = To Get "A Specific" Resident
+URL = /api/residents/[resident_id]
+Method = GET
+Response = {
+    "id":1,"room_id":1,
+    "name":"John Doe",
+    "father_name":"Richard Doe",
+    "nrc_no":"12/MN123456",
+    "roll_no":"12345",
+    "major":"Computer Science",
+    "address":"123 Main St, Cityville",
+    "student_phone":"555-1234",
+    "parent_phone":"555-9876",
+    "gender":"male"  
+}
+
+--------------------------------------------------
+
 Purpose = To Update a Building
 URL = /api/buildings/[building_id]
 Method = PUT
-body(via form data) = {
+Body(via form data) = {
     name : "buidling name",
     img : IMAGE_FILE
 }
@@ -115,7 +213,7 @@ Response={
 Purpose = To Update a Floor
 URL = /api/floors/[floor_id]
 Method = PUT
-body(via form data) = {
+Body(via form data) = {
     buildingId : buildingId(integer),
     name : "floor name",
     img : IMAGE_FILE
@@ -130,7 +228,7 @@ Response={
 Purpose = To Update a Room
 URL = /api/rooms/[room_id]
 Method = PUT
-body(via form data) = {
+Body(via form data) = {
     floorId : floorId(integer),
     name : "buidling name",
     img : IMAGE_FILE,
@@ -145,7 +243,7 @@ Response={
 Purpose = To Update a Resident
 URL = /api/residents/[resident_id]
 Method = PUT
-body(via form data) = {
+Body(via form data) = {
     room_id : 1,
     name : "Mg-hla-edit-put",
     father_name : "iamfather",

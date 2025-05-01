@@ -2,7 +2,6 @@ import { deleteImage, getDataFromForm, handleImage } from '@/libs/utils'
 import {
   deleteBuildingById,
   getBuildingById,
-  getBuildingInformationsById,
   updateBuilding,
 } from '@/models/Building'
 import { getFloorsByBuildingId } from '@/models/Floor'
@@ -10,7 +9,7 @@ import { NextResponse } from 'next/server'
 
 export async function GET(request, { params }) {
   try {
-    const { id } = await params
+    const { id } = await params;
     const floors = await getFloorsByBuildingId(id)
     return NextResponse.json(floors, { status: 200 })
   } catch (error) {

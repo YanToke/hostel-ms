@@ -3,6 +3,15 @@ import { countResidentsFromRoom, getResidentById, updateResident } from "@/model
 import { getRoomById } from "@/models/Room";
 import { NextResponse } from "next/server";
 
+export async function GET(request, { params }) {
+    const { id } = await params;
+    const resident = await getResidentById(id);
+    if (!resident) {
+        return NextResponse.json({ message: "No resident is found" }, { status: 404 })
+    }
+    return NextResponse.json(resident);
+}
+
 export async function PUT(request, { params }) {
     try {
         const { id } = await params;
