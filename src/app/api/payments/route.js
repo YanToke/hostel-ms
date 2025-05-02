@@ -7,13 +7,17 @@ export async function POST(request) {
         const formData = await request.formData();
         let { resident_id, paid_date, due_date, month, amount } = getDataFromForm(formData, 'resident_id', 'paid_date', 'due_date', 'month', 'amount')
         let status;
-        paid_date  = new Date(paid_date);
-        const previousPayment = await getPreviousPaymentBefore(paid_date,resident_id);
-        const previousDueDate = new Date(previousPayment.due_date);
-        if(paid_date > previousDueDate){
-            status = "over-paid"
+        paid_date = new Date(paid_date);
+        const previousPayment = await getPreviousPaymentBefore(paid_date, resident_id);
+        if (previousPayment) {
+            const previousDueDate = new Date(previousPayment.due_date);
+            if (paid_date > previousDueDate) {
+                status = "over-paid";
+            } else {
+                status = "under-paid";
+            }
         }else{
-            status = "under-paid"
+            status = "under-paid";
         }
         const isCreated = await createPayment(resident_id, paid_date, due_date, month, amount, status);
         if (!isCreated) {

@@ -60,7 +60,7 @@ export async function PUT(request, { params }) {
         { status: 400 }
       )
     }
-    if (resident.id != room_id) {
+    if (resident.room_id != room_id) {
       const currentResident = await countResidentsFromRoom(room_id)
       if (currentResident == room.capacity) {
         return NextResponse.json({ message: 'Room is Full' }, { status: 400 })

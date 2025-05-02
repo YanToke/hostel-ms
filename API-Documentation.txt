@@ -303,3 +303,82 @@ Response={
 
 
 --------------------------------------------------------------
+
+
+Purpose = To Get A Payment List Related To The Resident
+URL = /api/payments/resident/[resident_id]
+Method = GET
+Response = [
+  {
+    "id": 1,
+    "resident_id": 1,
+    "paid_date": "2025-01-04T17:30:00.000Z",
+    "due_date": "2025-02-04T17:30:00.000Z",
+    "month": 1,
+    "amount": 950,
+    "status": "under-paid"
+  },
+  {
+    "id": 2,
+    "resident_id": 1,
+    "paid_date": "2025-02-02T17:30:00.000Z",
+    "due_date": "2025-03-02T17:30:00.000Z",
+    "month": 1,
+    "amount": 950,
+    "status": "under-paid"
+  },
+  .......
+]
+
+
+---------------------------------------------------------------
+
+
+Purpose = To Make A Payment
+URL = /api/payments
+Method = POST
+Body = {
+  resident_id : 1,
+  paid_date : 2022-12-22,
+  due_date : 2023-1-22,
+  month : 1,
+  amount : 10000
+}
+
+Response = {
+   "message": "Successfully make payment"
+}
+
+
+--------------------------------------------------------------
+
+
+Purpose = To GET Data Related To The Dashboard
+URL = /api/dashboard
+Method = GET
+Response = {
+  "totalResidents": 5,
+  "totalMaleResidents": 3,
+  "totalFemaleResidents": 2,
+  "totalRooms": "15",
+  "availableRoom": "10",
+  "unpaidResidents": [
+    {
+      "id": 1,
+      "room_id": 1,
+      "name": "John Doe",
+      "father_name": "Richard Doe",
+      "nrc_no": "12/MN123456",
+      "roll_no": "12345",
+      "major": "Computer Science",
+      "address": "123 Main St, Cityville",
+      "student_phone": "555-1234",
+      "parent_phone": "555-9876",
+      "gender": "male",
+      "due_date": "2025-03-02T17:30:00.000Z"
+    },
+    ....
+  ]
+}
+
+------------------------------------------------------

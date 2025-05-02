@@ -5,6 +5,26 @@ export async function getAllResidents() {
     return residents;
 }
 
+export async function countAllResidents(){
+    const [residents] = await pool.query(`
+    SELECT COUNT(*) as total_residents FROM Resident;
+    `);
+    return residents[0] ? residents[0].total_residents : 0;
+}
+
+export async function getAllMaleResidents(){
+    const [residents] = await pool.query(`
+        SELECT COUNT(*) AS male_resident FROM Resident WHERE gender='male'    
+   `);
+   return residents[0] ? residents[0].male_resident : 0 ;
+}
+
+export async function getAllFemaleResidents(){
+    const [residents] = await pool.query(`
+        SELECT COUNT(*) AS female_resident FROM Resident WHERE gender='female'    
+   `);
+   return residents[0] ? residents[0].female_resident : 0;
+}
 
 export async function getResidentById(id) {
     const [resident] = await pool.query(`SELECT * FROM Resident WHERE id=?;`, [id]);
