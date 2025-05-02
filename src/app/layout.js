@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex bg-[#EDEDED]`}
       >
         <Sidebar />
         <div className="flex-1 ml-[320px] mr-[40px]">{children}</div>
