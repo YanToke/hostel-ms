@@ -2,6 +2,15 @@ import { deleteImage, getDataFromForm, handleImage } from "@/libs/utils";
 import { deleteRoomById, getRoomById, updateRoom } from "@/models/Room";
 import { NextResponse } from "next/server";
 
+export async function GET(request,{params}){
+    const {id} = await params;
+    const room = await getRoomById(id);
+    if(!room){
+        return NextResponse.json({message : "No room is found"},{status : 404})
+    }
+    return NextResponse.json(room);
+}
+
 export async function PUT(request, { params }) {
     try {
         const { id } = await params;

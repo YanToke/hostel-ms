@@ -5,6 +5,20 @@ export async function getAllRooms() {
   return rooms
 }
 
+export async function getAvaiableRooms(){
+  const [rooms] = await pool.query(`
+  SELECT SUM(capacity)-(SELECT COUNT(*) FROM Resident) as available_room FROM Room;
+  `);
+  return rooms[0] ? rooms[0].available_room : 0;
+}
+
+export async function countAllRooms(){
+  const [rooms] = await pool.query(`
+  SELECT SUM(capacity) AS rooms FROM Room;
+  `)
+  return rooms[0] ? rooms[0].rooms : 0;
+}
+
 export async function getRoomsByFloorId(floor_id) {
   const [rooms] = await pool.query('SELECT * FROM Room WHERE floor_id = ?', [
     floor_id,

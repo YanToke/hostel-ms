@@ -2,6 +2,16 @@ import { deleteImage, getDataFromForm, handleImage } from '@/libs/utils'
 import { deleteFloorById, getFloorById, updateFloor } from '@/models/Floor'
 import { NextResponse } from 'next/server'
 
+export async function GET(request,{params}){
+  const {id} = await params;
+  const floor = await getFloorById(id);
+  if(!floor){
+    return NextResponse.json({message : "No floor is found"},{status : 404})
+  }
+  return NextResponse.json(floor);
+}
+
+
 export async function PUT(request, { params }) {
   try {
     const { id } = await params

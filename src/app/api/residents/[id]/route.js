@@ -8,6 +8,15 @@ import {
 import { getRoomById } from '@/models/Room'
 import { NextResponse } from 'next/server'
 
+export async function GET(request, { params }) {
+    const { id } = await params;
+    const resident = await getResidentById(id);
+    if (!resident) {
+        return NextResponse.json({ message: "No resident is found" }, { status: 404 })
+    }
+    return NextResponse.json(resident);
+}
+
 export async function PUT(request, { params }) {
   try {
     const { id } = await params
@@ -51,7 +60,7 @@ export async function PUT(request, { params }) {
         { status: 400 }
       )
     }
-    if (resident.id != room_id) {
+    if (resident.room_id != room_id) {
       const currentResident = await countResidentsFromRoom(room_id)
       if (currentResident == room.capacity) {
         return NextResponse.json({ message: 'Room is Full' }, { status: 400 })
