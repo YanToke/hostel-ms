@@ -14,10 +14,10 @@ const page = async () => {
         Thu Thet Thar
       </h1>
       <div className="flex items-center justify-between mb-[24px]">
-        <h1 className="text-[24px] text-[#4F378B] font-bold">Buildings</h1>
+        <h1 className="text-[24px] text-[#671EE1] font-bold">Buildings</h1>
 
         <Link href={`/buildings/create-building`} className="flex items-center">
-          <p className="mr-[8px]">Create Building</p>
+          <p className="mr-[8px] text-[#671EE1] font-bold">Create Building</p>
           <img
             src="/system-icons/plus-circle.png"
             className="w-[24px] h-[24px]"
@@ -26,11 +26,8 @@ const page = async () => {
       </div>
       <div className="flex flex-wrap gap-[24px] w-[100%]">
         {buildings.map((building, index) => (
-          <div key={index}>
-            <Link
-              href={`/buildings/${building.id}`}
-              className="w-[253px] h-[192px]"
-            >
+          <div key={index} className="card">
+            <Link href={`/buildings/${building.id}`}>
               <Image
                 src={building.img}
                 width={253}
@@ -42,7 +39,7 @@ const page = async () => {
             </Link>
             <Link
               href={`/buildings/edit-building?building_id=${building.id}`}
-              className="text-[#4F378B] font-bold hover:text-black flex  items-center mt-[8px] mb-[8px]"
+              className="text-[#671EE1] font-bold hover:text-black flex  items-center mt-[8px] mb-[8px]"
             >
               <img
                 src="/system-icons/square-pen.png"

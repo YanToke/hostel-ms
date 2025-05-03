@@ -22,14 +22,14 @@ const Page = async ({ params }) => {
         </div>
 
         <div className="flex justify-between items-center mb-[24px]">
-          <h1 className="font-bold text-[24px] text-[#4F378B]">
+          <h1 className="font-bold text-[24px] text-[#671EE1]">
             {buildingName}
           </h1>
           <Link
             href={`/buildings/create-floor?building_id=${buildingId}`}
             className="flex items-center"
           >
-            <p className="mr-[8px]">Create Floor</p>
+            <p className="mr-[8px] text-[#671EE1] font-bold">Create Floor</p>
             <img
               src="/system-icons/plus-circle.png"
               className="w-[24px] h-[24px]"
@@ -39,11 +39,8 @@ const Page = async ({ params }) => {
 
         <div className="flex gap-[16px] flex-wrap">
           {building.map((floor, index) => (
-            <div key={index}>
-              <Link
-                href={`/buildings/${buildingId}/${floor.id}`}
-                className="w-[253px] h-[192px] cursor-pointer"
-              >
+            <div key={index} className="card">
+              <Link href={`/buildings/${buildingId}/${floor.id}`}>
                 <img
                   src={floor.img}
                   className={`h-[152px] w-[253px] rounded-[16px] shadow-lg`}
@@ -54,7 +51,7 @@ const Page = async ({ params }) => {
               </Link>
               <Link
                 href={`/buildings/edit-floor?building_id=${buildingId}&floor_id=${floor.id}`}
-                className="text-[#4F378B] font-bold hover:text-black flex  items-center mt-[8px] mb-[8px]"
+                className="text-[#671EE1] font-bold hover:text-black flex  items-center mt-[8px] mb-[8px]"
               >
                 <img
                   src="/system-icons/square-pen.png"

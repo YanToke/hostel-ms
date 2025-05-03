@@ -19,12 +19,12 @@ const page = async ({ params }) => {
     <>
       <SmallHeader />
       <div className="flex justify-between items-center mb-[24px]">
-        <h1 className="font-bold text-[24px] text-[#4F378B]">{floorName}</h1>
+        <h1 className="font-bold text-[24px] text-[#671EE1]">{floorName}</h1>
         <Link
           href={`/buildings/create-room?building_id=${buildingId}&floor_id=${floorId}`}
           className="flex items-center"
         >
-          <p className="mr-[8px]">Create Room</p>
+          <p className="mr-[8px] text-[#671EE1] font-bold">Create Room</p>
           <img
             src="/system-icons/plus-circle.png"
             className="w-[24px] h-[24px]"
@@ -37,11 +37,8 @@ const page = async ({ params }) => {
           <p>No Room Availabe</p>
         ) : (
           rooms.map((room, index) => (
-            <div key={index}>
-              <Link
-                href={`/buildings/${buildingId}/${floorId}/${room.id}`}
-                className="w-[253px] h-[192px]"
-              >
+            <div key={index} className="card">
+              <Link href={`/buildings/${buildingId}/${floorId}/${room.id}`}>
                 <img
                   src={room.img}
                   className="h-[152px] w-[253px] rounded-[16px] shadow-lg"
@@ -53,13 +50,13 @@ const page = async ({ params }) => {
                       src="/system-icons/bed.png"
                       className="w-[22px] mr-[8px]"
                     />
-                    <p className="font-bold text-[#4F378B]">{room.capacity}</p>
+                    <p className="font-bold text-[#671EE1]">{room.capacity}</p>
                   </div>
                 </div>
               </Link>
               <Link
                 href={`/buildings/edit-room?building_id=${buildingId}&floor_id=${floorId}&room_id=${room.id}`}
-                className="text-[#4F378B] font-bold hover:text-black flex  items-center mt-[8px] mb-[8px]"
+                className="text-[#671EE1] font-bold hover:text-black flex  items-center mt-[8px] mb-[8px]"
               >
                 <img
                   src="/system-icons/square-pen.png"

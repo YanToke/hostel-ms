@@ -43,7 +43,7 @@ const page = () => {
     <div>
       <Header title={'Create Building'} />
       <form onSubmit={submitHandler}>
-        <p className="font-bold text-[#4F378B] mb-[16px]">Building Image</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Building Image</p>
         <label htmlFor="img">
           <img
             src={
@@ -63,7 +63,7 @@ const page = () => {
           onChange={(e) => setImage(e.target.files[0])}
         />
 
-        <p className="font-bold text-[#4F378B] mb-[16px]">Building Name</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Building Name</p>
         <input
           name="name"
           required
@@ -77,7 +77,7 @@ const page = () => {
 
         <button
           type="submit"
-          className="w-[160px] h-[32px] bg-[#AEFFB8] rounded-[16px] shadow-lg font-bold"
+          className="w-[160px] h-[32px] bg-[#671EE1] text-white rounded-[16px] shadow-lg font-bold"
         >
           Create
         </button>

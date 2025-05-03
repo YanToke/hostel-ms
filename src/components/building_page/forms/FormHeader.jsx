@@ -21,9 +21,13 @@ const FormHeader = ({ title, id_package }) => {
         console.log('Failed to delete')
       } else {
         console.log('Successfully deleted ')
-        router.push(
-          `/buildings/${id_package.buildingId}/${id_package.floorId}/${id_package.roomId}`
-        )
+        if (id_package.buildingId && id_package.floorId && id_package.roomId) {
+          router.push(
+            `/buildings/${id_package.buildingId}/${id_package.floorId}/${id_package.roomId}`
+          )
+        } else {
+          router.push('/residents')
+        }
       }
     } catch (error) {
       console.log(error)

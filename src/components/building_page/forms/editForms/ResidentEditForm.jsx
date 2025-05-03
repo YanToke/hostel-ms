@@ -52,9 +52,13 @@ const ResidentEditForm = ({ resident, id_package }) => {
       if (!res.ok) {
         console.log(await res.json())
       } else {
-        router.push(
-          `/buildings/${id_package.buildingId}/${id_package.floorId}/${id_package.roomId}`
-        )
+        if (id_package.buildingId && id_package.floorId && id_package.roomId) {
+          router.push(
+            `/buildings/${id_package.buildingId}/${id_package.floorId}/${id_package.roomId}`
+          )
+        } else {
+          router.push('/residents')
+        }
       }
     } catch (error) {
       console.log(error)
@@ -63,7 +67,7 @@ const ResidentEditForm = ({ resident, id_package }) => {
 
   return (
     <form onSubmit={submitHandler}>
-      <p className="font-bold text-[#4F378B] mb-[16px]">Name</p>
+      <p className="font-bold text-[#671EE1] mb-[16px]">Name</p>
       <input
         name="name"
         required
@@ -74,7 +78,7 @@ const ResidentEditForm = ({ resident, id_package }) => {
         value={data.name}
       />
 
-      <p className="font-bold text-[#4F378B] mb-[16px]">Father Name</p>
+      <p className="font-bold text-[#671EE1] mb-[16px]">Father Name</p>
       <input
         name="father_name"
         required
@@ -85,7 +89,7 @@ const ResidentEditForm = ({ resident, id_package }) => {
         value={data.father_name}
       />
 
-      <p className="font-bold text-[#4F378B] mb-[16px]">NRC Number</p>
+      <p className="font-bold text-[#671EE1] mb-[16px]">NRC Number</p>
       <input
         name="nrc_no"
         required
@@ -96,7 +100,7 @@ const ResidentEditForm = ({ resident, id_package }) => {
         value={data.nrc_no}
       />
 
-      <p className="font-bold text-[#4F378B] mb-[16px]">Address</p>
+      <p className="font-bold text-[#671EE1] mb-[16px]">Address</p>
       <input
         name="address"
         required
@@ -107,7 +111,7 @@ const ResidentEditForm = ({ resident, id_package }) => {
         value={data.address}
       />
 
-      <p className="font-bold text-[#4F378B] mb-[16px]">Gender</p>
+      <p className="font-bold text-[#671EE1] mb-[16px]">Gender</p>
       <select
         name="gender"
         required
@@ -119,7 +123,7 @@ const ResidentEditForm = ({ resident, id_package }) => {
         <option value={'female'}>Female</option>
       </select>
 
-      <p className="font-bold text-[#4F378B] mb-[16px]">Roll Number</p>
+      <p className="font-bold text-[#671EE1] mb-[16px]">Roll Number</p>
       <input
         name="roll_number"
         required
@@ -130,7 +134,7 @@ const ResidentEditForm = ({ resident, id_package }) => {
         value={data.roll_number}
       />
 
-      <p className="font-bold text-[#4F378B] mb-[16px]">Major</p>
+      <p className="font-bold text-[#671EE1] mb-[16px]">Major</p>
       <input
         name="major"
         required
@@ -141,7 +145,7 @@ const ResidentEditForm = ({ resident, id_package }) => {
         value={data.major}
       />
 
-      <p className="font-bold text-[#4F378B] mb-[16px]">Resident Phone</p>
+      <p className="font-bold text-[#671EE1] mb-[16px]">Resident Phone</p>
       <input
         name="resident_phone"
         required
@@ -152,7 +156,7 @@ const ResidentEditForm = ({ resident, id_package }) => {
         value={data.resident_phone}
       />
 
-      <p className="font-bold text-[#4F378B] mb-[16px]">Parent Phone</p>
+      <p className="font-bold text-[#671EE1] mb-[16px]">Parent Phone</p>
       <input
         name="parent_phone"
         required
@@ -167,7 +171,7 @@ const ResidentEditForm = ({ resident, id_package }) => {
 
       <button
         type="submit"
-        className="w-[160px] h-[32px] mb-[40px] bg-[#AEFFB8] rounded-[16px] shadow-lg font-bold"
+        className="w-[160px] h-[32px] mb-[40px] bg-[#671EE1] text-white rounded-[16px] shadow-lg font-bold"
       >
         Update
       </button>

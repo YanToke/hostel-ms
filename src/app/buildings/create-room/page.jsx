@@ -34,7 +34,7 @@ const page = () => {
     <div>
       <Header title={'Create Room'} />
       <form onSubmit={submitHandler}>
-        <p className="font-bold text-[#4F378B] mb-[16px]">Room Image</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Room Image</p>
         <label htmlFor="img">
           <img
             src={
@@ -54,7 +54,7 @@ const page = () => {
           onChange={(e) => setImage(e.target.files[0])}
         />
 
-        <p className="font-bold text-[#4F378B] mb-[16px]">Room Name</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Room Name</p>
         <input
           type="text"
           className="border-[2px] border-black w-[344px] h-[40px] rounded-[8px] pl-[24px] mb-[40px]"
@@ -62,7 +62,7 @@ const page = () => {
           onChange={(e) => setName(e.target.value)}
         />
 
-        <p className="font-bold text-[#4F378B] mb-[16px]">Capacity</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Capacity</p>
         <input
           type="number"
           className="border-[2px] border-black w-[344px] h-[40px] rounded-[8px] pl-[24px] mb-[40px]"
@@ -74,7 +74,7 @@ const page = () => {
 
         <button
           type="submit"
-          className="w-[160px] h-[32px] bg-[#AEFFB8] rounded-[16px] shadow-lg font-bold"
+          className="w-[160px] h-[32px] bg-[#671EE1] text-white rounded-[16px] shadow-lg font-bold"
         >
           Create
         </button>

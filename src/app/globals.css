@@ -25,3 +25,7 @@ body {
 .sidebar_items_container {
   @apply text-[16px]  text-left  mx-[8px]  py-[16px] pl-[40px] rounded-[8px] mb-[8px];
 }
+
+.card {
+  @apply bg-white px-[8px] pt-[8px] pb-[48px] rounded-[24px] hover:shadow-lg;
+}

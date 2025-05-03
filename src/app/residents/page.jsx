@@ -1,78 +1,14 @@
 import React from 'react'
-
-const page = () => {
-  const guests = [
-    {
-      name: 'John Doe',
-      roll: '2-Alpha-1',
-      major: 'Engineering',
-      phone: '09123456781',
-      status: 'Paid',
-    },
-    {
-      name: 'Jane Smith',
-      roll: '2-Alpha-2',
-      major: 'Mathematics',
-      phone: '09123456782',
-      status: 'Unpaid',
-    },
-    {
-      name: 'Michael Johnson',
-      roll: '2-Alpha-3',
-      major: 'Physics',
-      phone: '09123456783',
-      status: 'Paid',
-    },
-    {
-      name: 'Emily Davis',
-      roll: '2-Alpha-4',
-      major: 'Biology',
-      phone: '09123456784',
-      status: 'Unpaid',
-    },
-    {
-      name: 'Chris Brown',
-      roll: '2-Alpha-5',
-      major: 'Chemistry',
-      phone: '09123456785',
-      status: 'Paid',
-    },
-    {
-      name: 'Emma Wilson',
-      roll: '2-Alpha-6',
-      major: 'Computer Science',
-      phone: '09123456786',
-      status: 'Unpaid',
-    },
-    {
-      name: 'Liam Martinez',
-      roll: '2-Alpha-7',
-      major: 'Electrical Engineering',
-      phone: '09123456787',
-      status: 'Paid',
-    },
-    {
-      name: 'Sophia Garcia',
-      roll: '2-Alpha-8',
-      major: 'Mechanical Engineering',
-      phone: '09123456788',
-      status: 'Unpaid',
-    },
-    {
-      name: 'Oliver Lee',
-      roll: '2-Alpha-9',
-      major: 'Civil Engineering',
-      phone: '09123456789',
-      status: 'Paid',
-    },
-    {
-      name: 'Ava Walker',
-      roll: '2-Alpha-10',
-      major: 'Environmental Science',
-      phone: '09123456790',
-      status: 'Unpaid',
-    },
-  ]
+import Link from 'next/link'
+const page = async () => {
+  let guests
+  try {
+    const res = await fetch(`http://localhost:3000/api/residents`)
+    guests = await res.json()
+    console.log(guests)
+  } catch (error) {
+    console.log('Failed to fetch resident data: ', error)
+  }
   return (
     <div>
       <div className="mt-[40px] mb-[40px]">
@@ -88,7 +24,7 @@ const page = () => {
           <div className="">
             <button
               type="submit"
-              className="font-bold bg-[#AEFFB8] py-[8px] px-[16px] border border-t-black border-b-black border-r-black rounded-r-[8px]"
+              className="font-bold text-white bg-[#671EE1] py-[8px] px-[16px] border border-t-black border-b-black border-r-black rounded-r-[8px]"
             >
               Search
             </button>
@@ -96,10 +32,10 @@ const page = () => {
         </form>
       </div>
       {/* Table wrapper */}
-      <div className="mt-[24px] max-h-[600px] overflow-y-auto bg-[#F7FFFD] shadow-lg rounded-[16px]">
+      <div className="mt-[24px] max-h-[600px] overflow-y-auto bg-[#ffffff] shadow-lg rounded-[16px]">
         <table className="table-auto w-full relative">
-          <thead className="sticky top-0 bg-[#F7FFFD] ">
-            <tr className="text-left font-semibold">
+          <thead className="sticky top-0 bg-[#671EE1] ">
+            <tr className="text-left font-semibold text-white">
               <th className="px-4 py-4">Name</th>
               <th className="px-4 py-4">Roll No</th>
               <th className="px-4 py-4">Major</th>
@@ -109,12 +45,14 @@ const page = () => {
             </tr>
           </thead>
           <tbody>
-            {guests.map((guest, index) => (
+            {guests?.map((guest, index) => (
               <tr key={index} className={`border-b`}>
-                <td className="px-4 py-4">{guest.name}</td>
-                <td className="px-4 py-4">{guest.roll}</td>
+                <td className="px-4 py-4">
+                  <Link href={`/residents/${guest.id}`}>{guest.name}</Link>
+                </td>
+                <td className="px-4 py-4">{guest.roll_no}</td>
                 <td className="px-4 py-4">{guest.major}</td>
-                <td className="px-4 py-4">{guest.phone}</td>
+                <td className="px-4 py-4">{guest.student_phone}</td>
                 <td className="px-4 py-4">
                   <span
                     className={`px-2 py-1 rounded ${
@@ -126,14 +64,27 @@ const page = () => {
                     {guest.status}
                   </span>
                 </td>
-                <td className="px-4 py-2">
-                  <button className="flex items-center text-gray-700 hover:text-gray-900">
+                <td className="px-4 py-2 flex items-center">
+                  <Link
+                    href={`/residents/edit-resident?resident_id=${guest.id}&room_id=${guest.room_id}`}
+                    className="flex items-center "
+                  >
                     <img
                       src="/system-icons/user-edit.png"
                       alt="Edit"
-                      className="w-[32px]"
+                      className="w-[32px] mr-[24px]"
                     />
-                  </button>
+                  </Link>
+                  <Link
+                    href={`/residents/add-payment?resident_id=${guest.id}`}
+                    className="flex items-center"
+                  >
+                    <img
+                      src="/system-icons/card.png"
+                      alt="Edit"
+                      className="h-[34px]"
+                    />
+                  </Link>
                 </td>
               </tr>
             ))}

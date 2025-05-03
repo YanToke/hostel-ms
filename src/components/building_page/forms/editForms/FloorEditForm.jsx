@@ -47,7 +47,7 @@ const FloorEditForm = ({ name, img, floorId, buildingId }) => {
     <div>
       <Header title={'Edit Floor'} />
       <form onSubmit={submitHandler}>
-        <p className="font-bold text-[#4F378B] mb-[16px]">Floor Image</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Floor Image</p>
         <label htmlFor="img">
           <img
             src={previewImage || '/placeholder-images/placeholder.png'}
@@ -59,7 +59,7 @@ const FloorEditForm = ({ name, img, floorId, buildingId }) => {
         </label>
         <input id="img" type="file" hidden onChange={imageChangeHandler} />
 
-        <p className="font-bold text-[#4F378B] mb-[16px]">Floor Name</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Floor Name</p>
         <input
           name="name"
           required
@@ -73,7 +73,7 @@ const FloorEditForm = ({ name, img, floorId, buildingId }) => {
         <br />
         <button
           type="submit"
-          className="w-[160px] h-[32px] bg-[#AEFFB8] rounded-[16px] shadow-lg font-bold"
+          className="w-[160px] h-[32px] bg-[#671EE1] text-white rounded-[16px] shadow-lg font-bold"
         >
           Update
         </button>

@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 
 const BuildingEditForm = ({ id, name, img }) => {
   const [previewImage, setPreviewImage] = useState(img)
-  const [image, setImage] = useState(previewImage);
+  const [image, setImage] = useState(previewImage)
   const [data, setData] = useState({ name })
   const router = useRouter()
   console.log('name', data.name)
@@ -13,7 +13,7 @@ const BuildingEditForm = ({ id, name, img }) => {
 
   function onChangeHandler(event) {
     const { name, value } = event.target
-    console.log("I am event target",event.target)
+    console.log('I am event target', event.target)
     setData((prevData) => ({ ...prevData, [name]: value }))
   }
 
@@ -25,7 +25,7 @@ const BuildingEditForm = ({ id, name, img }) => {
 
   const submitHandler = async (event) => {
     event.preventDefault()
-    console.log("Before push",data.name,"Image",image)
+    console.log('Before push', data.name, 'Image', image)
     const formData = new FormData()
     formData.append('name', data.name)
     formData.append('img', image)
@@ -47,7 +47,7 @@ const BuildingEditForm = ({ id, name, img }) => {
     <div>
       <Header title={'Edit Building'} />
       <form onSubmit={submitHandler}>
-        <p className="font-bold text-[#4F378B] mb-[16px]">Building Image</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Building Image</p>
         <label htmlFor="img">
           <img
             src={previewImage || '/building-images/building.jpg'}
@@ -59,7 +59,7 @@ const BuildingEditForm = ({ id, name, img }) => {
         </label>
         <input id="img" type="file" hidden onChange={imageChangeHandler} />
 
-        <p className="font-bold text-[#4F378B] mb-[16px]">Building Name</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Building Name</p>
         <input
           name="name"
           required
@@ -73,7 +73,7 @@ const BuildingEditForm = ({ id, name, img }) => {
         <br />
         <button
           type="submit"
-          className="w-[160px] h-[32px] bg-[#AEFFB8] rounded-[16px] shadow-lg font-bold"
+          className="w-[160px] h-[32px] bg-[#671EE1] text-white rounded-[16px] shadow-lg font-bold"
         >
           Update
         </button>

@@ -21,22 +21,22 @@ const page = async ({ params }) => {
       <div>
         <div className="flex items-center justify-between">
           <p className="text-[24px]">
-            <span className="font-bold text-[#4F378B]">{roomName}</span>
+            <span className="font-bold text-[#671EE1]">{roomName}</span>
           </p>
           <Link
             href={`/buildings/create-resident?building_id=${buildingId}&floor_id=${floorId}&room_id=${roomId}`}
-            className="flex items-center gap-[14px] bg-[#AEFFB8] py-[8px] pl-[16px] pr-[8px] shadow-lg"
+            className="flex items-center gap-[14px] bg-[#671EE1] py-[8px] pl-[16px] pr-[8px] hover:shadow-lg"
           >
-            <span className="font-bold text-[#4F378B]">Add Guest</span>
-            <img src="/system-icons/user-plus.png" className="w-[40px]" />
+            <span className="font-bold text-white">Add Guest</span>
+            <img src="/system-icons/user-plus.png" className="w-[32px]" />
           </Link>
         </div>
 
         {/* Table wrapper */}
-        <div className="mt-[24px] max-h-[600px] overflow-y-auto bg-[#F7FFFD] shadow-lg rounded-[16px]">
+        <div className="mt-[24px] max-h-[600px] overflow-y-auto bg-[#ffffff] shadow-lg rounded-[16px]">
           <table className="table-auto w-full relative">
-            <thead className="sticky top-0 bg-[#F7FFFD] ">
-              <tr className="text-left font-semibold">
+            <thead className="sticky top-0 bg-[#671EE1] ">
+              <tr className="text-left font-semibold text-white">
                 <th className="px-4 py-4">Name</th>
                 <th className="px-4 py-4">Roll No</th>
                 <th className="px-4 py-4">Major</th>
@@ -78,15 +78,25 @@ const page = async ({ params }) => {
                         {resident.status}
                       </span>
                     </td>
-                    <td className="px-4 py-2">
+                    <td className="px-4 py-2 flex items-center">
                       <Link
                         href={`/buildings/edit-resident?building_id=${buildingId}&floor_id=${floorId}&room_id=${roomId}&resident_id=${resident.id}`}
-                        className="flex items-center text-gray-700 hover:text-gray-900"
+                        className="flex items-center "
                       >
                         <img
                           src="/system-icons/user-edit.png"
                           alt="Edit"
-                          className="w-[32px]"
+                          className="w-[32px] mr-[24px]"
+                        />
+                      </Link>
+                      <Link
+                        href={`/buildings/add-payment?building_id=${buildingId}&floor_id=${floorId}&room_id=${roomId}&resident_id=${resident.id}`}
+                        className="flex items-center"
+                      >
+                        <img
+                          src="/system-icons/card.png"
+                          alt="Edit"
+                          className="h-[34px]"
                         />
                       </Link>
                     </td>

@@ -96,7 +96,7 @@ const page = () => {
 
       {/*Form*/}
       <form onSubmit={submitHandler}>
-        <p className="font-bold text-[#4F378B] mb-[16px]">Name</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Name</p>
         <input
           name="name"
           required
@@ -107,7 +107,7 @@ const page = () => {
           value={data.name}
         />
 
-        <p className="font-bold text-[#4F378B] mb-[16px]">Father Name</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Father Name</p>
         <input
           name="father_name"
           required
@@ -118,7 +118,7 @@ const page = () => {
           value={data.father_name}
         />
 
-        <p className="font-bold text-[#4F378B] mb-[16px]">NRC Number</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">NRC Number</p>
         <input
           name="nrc_no"
           required
@@ -129,7 +129,7 @@ const page = () => {
           value={data.nrc_no}
         />
 
-        <p className="font-bold text-[#4F378B] mb-[16px]">Address</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Address</p>
         <input
           name="address"
           required
@@ -140,7 +140,7 @@ const page = () => {
           value={data.address}
         />
 
-        <p className="font-bold text-[#4F378B] mb-[16px]">Gender</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Gender</p>
         <select
           name="gender"
           required
@@ -152,7 +152,7 @@ const page = () => {
           <option value={'female'}>Female</option>
         </select>
 
-        <p className="font-bold text-[#4F378B] mb-[16px]">Roll Number</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Roll Number</p>
         <input
           name="roll_number"
           required
@@ -163,7 +163,7 @@ const page = () => {
           value={data.roll_number}
         />
 
-        <p className="font-bold text-[#4F378B] mb-[16px]">Major</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Major</p>
         <input
           name="major"
           required
@@ -174,7 +174,7 @@ const page = () => {
           value={data.major}
         />
 
-        <p className="font-bold text-[#4F378B] mb-[16px]">Resident Phone</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Resident Phone</p>
         <input
           name="resident_phone"
           required
@@ -185,7 +185,7 @@ const page = () => {
           value={data.resident_phone}
         />
 
-        <p className="font-bold text-[#4F378B] mb-[16px]">Parent Phone</p>
+        <p className="font-bold text-[#671EE1] mb-[16px]">Parent Phone</p>
         <input
           name="parent_phone"
           required
@@ -200,7 +200,7 @@ const page = () => {
 
         <button
           type="submit"
-          className="w-[160px] h-[32px] mb-[40px] bg-[#AEFFB8] rounded-[16px] shadow-lg font-bold"
+          className="w-[160px] h-[32px] mb-[40px] bg-[#671EE1] text-white rounded-[16px] shadow-lg font-bold"
         >
           Create
         </button>
