@@ -50,3 +50,10 @@ export async function getAllUnpaidResidents(){
     return overdueResidents;
 }
 
+export async function getPreviousPaymentByRoomId(room_id){
+    const [residents] = await pool.query(`
+    SELECT Resident.*,MAX(Payment.due_date) as due_date FROM Resident INNER JOIN Payment ON
+    Resident.id = Payment.resident_id  WHERE Resident.room_id = ? group by Resident.id;
+    `,[room_id]);
+    return residents;
+}

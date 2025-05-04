@@ -5,10 +5,14 @@ const page = async ({ params }) => {
   const { residentId } = await params
   console.log(residentId)
   let data = null
+  let paymentData = null;
   try {
-    const res = await fetch(`http://localhost:3000/api/residents/${residentId}`)
-    data = await res.json()
+    const residentResponse = await fetch(`http://localhost:3000/api/residents/${residentId}`);
+    const paymentResponse = await  fetch(`http://localhost:3000/api/payments/resident/${residentId}`) 
+     data = await residentResponse.json();
+     paymentData = await paymentResponse.json();
     console.log(data)
+    console.log(paymentData);
   } catch (error) {
     console.log('Failed to fetch resident data')
   }
@@ -82,7 +86,26 @@ const page = async ({ params }) => {
               </tr>
             </thead>
             <tbody>
-              <tr className={`border-b`}>
+              {paymentData && paymentData.map( (payment,index) => (
+                <tr className={`border-b`} key={index}>
+                <td className="px-4 py-4">{payment.paid_date}</td>
+                <td className="px-4 py-4">{payment.month}</td>
+                <td className="px-4 py-4">{payment.due_date}</td>
+                <td className="px-4 py-4">{payment.amount}</td>
+                <td className="px-4 py-4">{payment.status}</td>
+                <td className="px-4 py-4">{payment.day_late}</td>
+                <td className="px-4 py-2">
+                  <button className="flex items-center">
+                    <img
+                      src="/system-icons/paper-pen.png"
+                      alt="Edit"
+                      className="w-[32px]"
+                    />
+                  </button>
+                </td>
+              </tr>
+              ))}
+              {/* <tr className={`border-b`}>
                 <td className="px-4 py-4">a</td>
                 <td className="px-4 py-4">b</td>
                 <td className="px-4 py-4">c</td>
@@ -98,7 +121,7 @@ const page = async ({ params }) => {
                     />
                   </button>
                 </td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         </div>

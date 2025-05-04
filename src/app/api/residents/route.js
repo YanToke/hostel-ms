@@ -1,4 +1,5 @@
 import { getDataFromForm } from '@/libs/utils'
+import { getAllLatestResidentsPayments, getAllResidentsPreviousPaymentsBefore } from '@/models/Payment';
 import {
   countResidentsFromRoom,
   createResident,
@@ -9,7 +10,8 @@ import { getRoomById } from '@/models/Room'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  const residents = await getAllResidents()
+  let residents = await getAllLatestResidentsPayments();
+  residents = await computeStatus(residents);
   return NextResponse.json(residents)
 }
 
@@ -80,4 +82,17 @@ export async function POST(request) {
       { status: 500 }
     )
   }
+}
+
+function computeStatus(residents){
+  let now = new Date();
+  residents.map((resident) => {
+    if(resident.due_date > now){
+      resident.status = "paid";
+    }else{
+      resident.status = "unpaid";
+    }
+    return resident;
+  })
+  return residents;
 }
